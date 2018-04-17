@@ -4,7 +4,20 @@ import './App.css';
 class News extends Component {
     
 // console.log("News API data in the house");
+// News api key///////////
+// let newsAPI = "https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375";
 
+
+// function getNewsKey(){
+//     return{
+//         newsAPI: "511e64b5fdc44764af3517769a250375",
+//         authDomain: "https://newsapi.org/v2/top-headlines?country=us&limit=10",
+//         databaseURL: "https://mighty-muffin-avengers.firebaseio.com/",
+//         fbWebApiKey: "AIzaSyBMVc4fH_p-3aJfxx3En0kdzvNxrssHu6A"
+//     };
+// }
+
+///////////////////////////////
 // let $ = require('jquery');
 // // let outputNews = require('./news-Setter');
 
@@ -54,7 +67,7 @@ class News extends Component {
 // );
 
 // module.exports = newsAPICall();
-
+//////////////////////////
 
   render() {
     return (
