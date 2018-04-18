@@ -19,6 +19,11 @@ class Weather extends Component {
             modal: !this.state.modal
         });
     }
+
+    componentDidMount() {
+        console.log("componentDidMount");
+        this.getWeather();
+    }
     
       changeZipClick() {
           console.log("change zip code");
@@ -33,10 +38,6 @@ class Weather extends Component {
             }), this.getWeather());
       }
 
-    componentDidMount() {
-        console.log("componentDidMount");
-        this.getWeather();
-    }
 
 
 
@@ -60,5 +61,18 @@ class Weather extends Component {
                     error: error
                 });
             })
+        }
+        render() {
+            const {error, weatherLoaded, objResult} = this.state;
+
+            if (error) {
+                return (
+                    <div><p>Error</p></div>
+                )
+            }else if (!weatherLoaded) {
+                return (
+                    <div className="loadingWeather"> <h3>Loading...</h3> </div>
+                )
+            }
         }
     };
