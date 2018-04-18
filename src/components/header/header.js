@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 let Header = (props) => {
 
@@ -7,6 +7,7 @@ let Header = (props) => {
           <div className="header">
              <nav className="navHeader">
                    <h1>{props.title}</h1>
+                    <h2>Hello {props.name}</h2>
              </nav>
           </div>
       </div>    
