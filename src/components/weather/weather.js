@@ -7,7 +7,7 @@ class Weather extends Component {
         super(props);
 
         this.state = {
-            weatherLoaded:false,
+            weatherLoaded: false,
             objResult: {},
             error: null,
             modal:false
@@ -43,13 +43,13 @@ class Weather extends Component {
 
     getWeather() {
         console.log("get weather");
-        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=f5f69f7deb5aae2ed812df935759b130`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=f5f69f7deb5aae2ed812df935759b130&units=imperial`)
         .then(res => res.json())
         .then(
             (result) => {
                 console.log("result:", result);
                 this.setState({
-                    loadWeather: true,
+                    weatherLoaded: true,
                     objResult: result,
                     isHidden: true
                 });
@@ -76,9 +76,15 @@ class Weather extends Component {
             }else {
                 return (
                     <div className="weatherRender">
-                       <div className="">
+                       <div className="weatherContainer">
                           <p>{objResult.name}</p>
+                          <h1>{Math.round(objResult.main.temp)}&deg;</h1>
+                            <button onClick={this.toggle}>
+                               <i className="changeZip"></i>
+                            </button>
                        </div>
+                       <p className="description">{objResult.weather[0].description}</p>
+
                     </div>
                 )
             }
