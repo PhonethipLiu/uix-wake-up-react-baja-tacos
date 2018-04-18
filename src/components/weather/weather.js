@@ -73,6 +73,15 @@ class Weather extends Component {
                 return (
                     <div className="loadingWeather"> <h3>Loading...</h3> </div>
                 )
+            }else {
+                return (
+                    <div className="weatherRender">
+                       <div className="">
+                          <p>{objResult.name}</p>
+                       </div>
+                    </div>
+                )
             }
         }
     };
+    export default Weather;
