@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 
 let zipCode = 37221;
 
@@ -84,6 +85,17 @@ class Weather extends Component {
                             </button>
                        </div>
                        <p className="description">{objResult.weather[0].description}</p>
+                       <div> 
+                           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                              <ModalHeader toggle={this.toggle}></ModalHeader>
+                                <ModalBody>
+                                    <input id="zipCodeInput" type="text" className="zipinput" placeholder="New Zipcode"></input>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <button className="changeButton" onClick={this.changeZipClick.bind(this)}><p>Change Zipcode</p></button>
+                                </ModalFooter>
+                            </Modal>
+                       </div>
 
                     </div>
                 )
