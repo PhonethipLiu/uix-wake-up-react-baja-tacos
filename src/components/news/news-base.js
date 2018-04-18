@@ -1,14 +1,18 @@
-// import Rebase from 're-base'
-// import firebase from 'firebase'
+import Rebase from 're-base'
+import firebase from 'firebase'
 
-// // need to add the group firebase here
-// const config = {
-//     apiKey: "REALLYLONGNUMBER",
-//     authDomain: "your-database.firebaseapp.com",
-//     databaseURL: "https://d18-demo.your-database.com"
-// }
+// need to add the group firebase here
+const configNews = {
+    newsAPI : "511e64b5fdc44764af3517769a250375",
+    authDomain: "https://newsapi.org/v2/top-headlines?country=us&limit=10&"
+}
 
-// const app = firebase.initializeApp(config)
-// const base = Rebase.createClass(app.database())
+const newsAPI = firebase.initializeApp(configNews)
+const base = Rebase.createClass(app.database())
 
-// export default base;
+// News Config?
+// const appNews = firebase.initializeApp(config)
+// https://newsapi.org/v2/top-headlines?country=us&apiKey=511e64b5fdc44764af3517769a250375// 
+
+export default base;
+
