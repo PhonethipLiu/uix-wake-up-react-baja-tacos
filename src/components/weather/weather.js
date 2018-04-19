@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import { Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-
+import './weather.css';
 
 let zipCode = 37203;
 
@@ -79,19 +79,26 @@ class Weather extends Component {
                 )
             }else {
                 return (
-                    <div className="weatherRender">
-                       <div className="weatherContainer">
-                          <p>{objResult.name}</p>
-                          <h1>{Math.round(objResult.main.temp)}&deg;</h1>
+                    <div className="container weatherRender">
+                       <div className="row weatherContainer">
+                          <h1 className="col-6 tempRender">{Math.round(objResult.main.temp)}&deg;</h1>
+                          
+                        <div className="col-6 weatherRight">
+                          <h5>{objResult.name}</h5>
                           
 
-                            <Button color="danger" onClick={this.toggle}>             
+                            <Button color="light" onClick={this.toggle}>             
                                <p className="changeZip">Change Zip</p>
                             </Button>
-                       </div>
 
                        <p className="description">{objResult.weather[0].description}</p>
+                       </div>
+                       </div>
+                       
+                       
                        <div> 
+
+
                            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                               <ModalHeader toggle={this.toggle}></ModalHeader>
                                 <ModalBody>

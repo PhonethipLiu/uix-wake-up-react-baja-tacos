@@ -7,13 +7,18 @@ import './header.css';
 let Header = (props) => {
 
     return(
-      <div className="containerNav">
-          <div className="header">
-             <nav className="navHeader">
-             <LogoHeader pic={logoPic}/>
-                   <h1>{props.title}</h1>
+      <div className="header-navbar">
+          <div className="row navRow">
+             <nav className="nav navHeader">
+             <div className="col">
+                <LogoHeader pic={logoPic}/>
+             </div>
+             <div className="col">
                     <h2>Hello {props.name}</h2>
-
+             </div>
+             <div className="col">
+                   <h1>{props.title}</h1>
+             </div>
              </nav>
           </div>
       </div>    
