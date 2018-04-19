@@ -1,6 +1,9 @@
 .pageContainer{
   background: linear-gradient(#DB2DAC,rgb(223, 63, 180), #ED854F, rgb(252, 219, 110), #FFFBD0);
 }
+.tempRender{
+  font-size: 5em;
+}
 .weatherDiv{
 margin: 10px;
     background-color:rgb(223, 221, 221, .7);
