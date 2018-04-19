@@ -68,10 +68,10 @@ class Song extends React.Component {
             <button onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
               <div key={index}>
-                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" class="song_image"/>
+                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" className="song_image"/>
                 {item.snippet.title}
                 {item.snippet.channelTitle}
-                <img src={song} alt="add song" class="add_song_image" width="20" id={index}/>
+                <img src={song} alt="add song" className="add_song_image" width="20" id={index}/>
               </div>
             ))}
           </div>

@@ -79,10 +79,10 @@ class Weather extends Component {
                 )
             }else {
                 return (
-                    <div className="weatherRender">
+                    <div className="container weatherRender">
                        <div className="weatherContainer">
                           <p>{objResult.name}</p>
-                          <h1>{Math.round(objResult.main.temp)}&deg;</h1>
+                          <h1 className="tempRender">{Math.round(objResult.main.temp)}&deg;</h1>
                           
 
                             <Button color="danger" onClick={this.toggle}>             
@@ -92,6 +92,8 @@ class Weather extends Component {
 
                        <p className="description">{objResult.weather[0].description}</p>
                        <div> 
+
+
                            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                               <ModalHeader toggle={this.toggle}></ModalHeader>
                                 <ModalBody>
