@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
+import {Button} from 'reactstrap';
 
 let zipCode = 37221;
 
@@ -11,14 +12,16 @@ class Weather extends Component {
             weatherLoaded: false,
             objResult: {},
             error: null,
-            modal:false
+            modal: false
         }
     this.toggle = this.toggle.bind(this);
     }
-    toggle(){
+    toggle(props){
+        console.log(props.state)
         this.setState({
             modal: !this.state.modal
         });
+        console.log("you clicked", this.state);
     }
 
     componentDidMount() {
@@ -35,7 +38,7 @@ class Weather extends Component {
                 objResult: {},
                 error: null,
             }, this.setState({
-                modal: !this.statemodal
+                modal: !this.state.modal
             }), this.getWeather());
       }
 
@@ -80,10 +83,13 @@ class Weather extends Component {
                        <div className="weatherContainer">
                           <p>{objResult.name}</p>
                           <h1>{Math.round(objResult.main.temp)}&deg;</h1>
-                            <button onClick={this.toggle}>
-                               <i className="changeZip"></i>
-                            </button>
+                          
+
+                            <Button color="danger" onClick={this.toggle}>             
+                               <p className="changeZip">Change Zip</p>
+                            </Button>
                        </div>
+
                        <p className="description">{objResult.weather[0].description}</p>
                        <div> 
                            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
