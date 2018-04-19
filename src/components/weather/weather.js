@@ -1,8 +1,24 @@
 import React, {Component} from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
-import {Button} from 'reactstrap';
+// import { Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
-let zipCode = 37221;
+
+
+// import { Button } from 'react-bootstrap';
+
+// export default class Weather extends Component {
+
+// render() {
+
+//         return (
+
+//    <div className="container">
+//    <Button bsStyle="primary" type="submit">Submit Dylan</Button>
+//    </div>
+//    );
+//  }
+// }
+let zipCode = 37203;
 
 class Weather extends Component {
     constructor(props) {
@@ -17,7 +33,6 @@ class Weather extends Component {
     this.toggle = this.toggle.bind(this);
     }
     toggle(props){
-        console.log(props.state)
         this.setState({
             modal: !this.state.modal
         });
