@@ -4,13 +4,15 @@
   "private": true,
   "author": "Baja Tacos",
   "dependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
+    "bootstrap": "^4.0.0",
     "firebase": "^4.10.1",
     "jquery": "^3.3.1",
-    "bootstrap": "^4.0.0",
-    "popper.js": "^1.12.9"
+    "popper.js": "^1.12.9",
+    "react": "^16.3.2",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^5.0.0-beta.3"
   },
   "scripts": {
     "start": "react-scripts start",
