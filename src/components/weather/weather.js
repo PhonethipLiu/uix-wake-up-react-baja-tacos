@@ -3,21 +3,6 @@ import React, {Component} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 
-
-// import { Button } from 'react-bootstrap';
-
-// export default class Weather extends Component {
-
-// render() {
-
-//         return (
-
-//    <div className="container">
-//    <Button bsStyle="primary" type="submit">Submit Dylan</Button>
-//    </div>
-//    );
-//  }
-// }
 let zipCode = 37203;
 
 class Weather extends Component {
