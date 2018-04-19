@@ -3,7 +3,11 @@ import './App.css';
 import Header from './components/header/header';
 import Weather from './components/weather/weather.js';
 import Song from './components/music/music.js';
-import Login from './config/login'
+
+
+import Login from './config/Login'
+import LogOut from './config/Logout'
+
 import Register from './config/userRegistration'
 
 
@@ -24,8 +28,9 @@ class App extends Component {
     <div className="songDiv">
       <Song />
 
-    </div>
-
+      <Register />
+      <Login />
+      <LogOut />
 
 
       </div>
