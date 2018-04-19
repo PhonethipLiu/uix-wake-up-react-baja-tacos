@@ -3,6 +3,9 @@ import './App.css';
 import Header from './components/header/header';
 import Weather from './components/weather/weather.js';
 import Song from './components/music/music.js';
+import Login from './config/login'
+import Register from './config/userRegistration'
+
 
 // import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 // import {Button} from 'reactstrap';
@@ -20,7 +23,11 @@ class App extends Component {
       </div>
     <div className="songDiv">
       <Song />
+
     </div>
+
+
+
       </div>
 
     <div className="col-6 newsDiv">
@@ -30,6 +37,8 @@ class App extends Component {
     <div className="col-3 claenderDiv">
         <h1>Calender</h1>
     </div>
+      <Register />
+      <Login />
   </div>
   </div>
     )
