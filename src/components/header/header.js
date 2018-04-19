@@ -1,12 +1,13 @@
 import React from 'react';
 import logoPic from '../../images/Hustle-01.svg';
 import LogoHeader from './logoHeader';
+import './header.css';
 
 
 let Header = (props) => {
 
     return(
-      <div className="container">
+      <div className="containerNav">
           <div className="header">
              <nav className="navHeader">
              <LogoHeader pic={logoPic}/>
