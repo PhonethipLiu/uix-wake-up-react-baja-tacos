@@ -1,0 +1,9 @@
+input {
+    padding: 1em;
+}
+
+button {
+    padding: 1em;
+    background-color: #ffffff;
+    text-decoration: none;
+}

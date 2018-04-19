@@ -2,9 +2,9 @@
 import Rebase from 're-base';
 import firebase from 'firebase';
 const app = firebase.initializeApp({
-  apiKey: "REALLYLONGNUMBER",
-  authDomain: "yours.firebaseapp.com",
-  databaseURL: "https://yours.firebaseio.com"
+  apiKey: "AIzaSyAZEJBFv7xYIDASPN89blBnoudCVJJu7jU",
+  authDomain: "baja-tacos.firebaseapp.com",
+  databaseURL: "https://baja-tacos.firebaseio.com"
 });
 export const rebase = Rebase.createClass(app.database());
 

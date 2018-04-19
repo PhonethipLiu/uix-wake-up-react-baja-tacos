@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import './music.css';
+import song from '../../images/add_song.png'
 
 class Song extends React.Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class Song extends React.Component {
     }
 
   handleChange() {
-    this.setState = {
+    this.state = {
       error: null,
       isLoaded: false,
       items: [],
@@ -62,11 +64,14 @@ class Song extends React.Component {
       } else {
         return (
           <div>
-          <input type="text"  id="search" />
+          <input type="text"  id="search" placeholder="SEARCH YOUTUBE" width="20" height="10" />
             <button onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
               <div key={index}>
+                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" class="song_image"/>
                 {item.snippet.title}
+                {item.snippet.channelTitle}
+                <img src={song} alt="add song" class="add_song_image" width="20" id={index}/>
               </div>
             ))}
           </div>
