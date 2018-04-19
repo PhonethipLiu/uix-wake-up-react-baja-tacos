@@ -1,56 +1,89 @@
 import React, { Component } from 'react';
 
 
+// function OutputNews(props) {
+// const story = (
+//     <ul>
+//       {props.artArr.map((article) =>
+//       <li key ={article}>
+//       {article.title} {article.description}
+//       {article.url} {article.source}
+//       {article.urlToImage}
+//       </li>
+//       )}
+//     </ul>
+//   );
+//   return (
+//     <ul> {article}</ul>
+//   );
+// }
+
 class News extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         error: null,
-        isLoaded: false,
-        items: []
+        newsLoaded: false,
+        articles: []
       };
     }
-  
     componentDidMount() {
-      fetch("https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375")
+        console.log("news componentDidMount");
+        this.getNews();
+    }
+
+    getNews() {
+        console.log("getNews");
+      fetch(`https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375`)
         .then(res => res.json())
         .then(
           (result) => {
+              console.log("news result:", result);
+              // const artArr = result;
+              // console.log("artArr result:", artArr);
+             
             this.setState({
-              isLoaded: true,
-              items: result.items
+                newsLoaded: true,
+                articles: result.articles
             });
+            console.log("news articles source name:", result.articles[0].source.name, "news articles title:", result.articles[0].title, "news articles description:", result.articles[0].description, "news articles url:", result.articles[0].url, "news articles image:", result.articles[0].urlToImage);
           },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
+          // handle errors here
           (error) => {
             this.setState({
-              isLoaded: true,
-              error
+                newsLoaded: true,
+                error: error
             });
           }
         )
     }
   
     render() {
-      const { error, isLoaded, items } = this.state;
+      const { error, newsLoaded, articles } = this.state;
+      
       if (error) {
-        return <div>Error: {error.message}</div>;
-      } else if (!isLoaded) {
-        return <div>Loading...</div>;
-      } else {
+        return <div><p>Error: {error.message}</p></div>;
+
+        } else if (!newsLoaded) {
+        return <div>Loading News...</div>;
+
+        } else {
+          let topNews = this.state.articles;
+          let newsStory = topNews.map((article, i) =>
+          <div key={i}>
+            <ul>
+              <li> {article.title}  {article.source.name}  {article.description}  {article.url} {article.urlToImage}</li>
+            </ul>
+            </div>
+            );
+
+            newsStory.splice(10);
         return (
-          <ul>
-            {items.map(item => (
-              <li key={item.title}>
-                {item.title} {item.description}
-                {item.url} {item.source.name}
-                {item.urlToImage}
-              </li>
-            ))}
-          </ul>
-        );
+        
+            <div>
+              {newsStory}
+              </div>
+        )
       }
     }
 }
