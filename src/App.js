@@ -4,7 +4,8 @@ import Header from './components/header/header';
 import Weather from './components/weather/weather.js';
 import Song from './components/music/music.js';
 
-import Login from './config/login'
+import Login from './config/Login'
+import LogOut from './config/Logout'
 import Register from './config/userRegistration'
 
 // import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
@@ -19,6 +20,7 @@ class App extends Component {
       <Song />
       <Register />
       <Login />
+      <LogOut />
 
       </div>
     )

@@ -21,15 +21,14 @@ class Login extends Component {
        
       }
 
-
-
     handleSubmit = (e) => {
         e.preventDefault()
         loginWithGoogle(googleProvider)
         .catch((error) => {
             this.setState(setErrorMsg('Invalid username/password.'))
-            })
+        })
     }
+
     resetPassword = () => {
         resetPassword(this.email.value)
         .then(() => this.setState(setErrorMsg(`Password reset email sent to ${this.email.value}.`)))
@@ -40,10 +39,7 @@ class Login extends Component {
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
-        <h1> Login With Your Google Account</h1>
-        <button onClick={this.handleSubmit}></button>
-        
-        
+        <button onClick={this.handleSubmit}>Login With Google</button>
       </div>
     )
   }
