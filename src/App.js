@@ -3,6 +3,10 @@ import './App.css';
 import Header from './components/header/header';
 import Weather from './components/weather/weather.js';
 import Song from './components/music/music.js';
+
+import Login from './config/login'
+import Register from './config/userRegistration'
+
 // import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 // import {Button} from 'reactstrap';
 class App extends Component {
@@ -13,6 +17,8 @@ class App extends Component {
 
       <Weather />
       <Song />
+      <Register />
+      <Login />
 
       </div>
     )
