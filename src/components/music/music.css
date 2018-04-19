@@ -1,9 +1,39 @@
 input {
-    padding: 1em;
+    padding: .25em;
+    width: 20.75%;
 }
 
 button {
-    padding: 1em;
+    padding: .25em;
     background-color: #ffffff;
     text-decoration: none;
+}
+
+.body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.songInfo {
+    display: flex;
+    flex-direction: row;
+    margin: .125em 0;
+    border: #e7e7e7 solid 1px;
+    width: 25%;
+}
+
+.title {
+    font-size: 12px;
+    font-weight: 500;
+    width: 200px;
+    margin: 0 2em;
+    margin-top: .125em;
+}
+
+.artist {
+    font-size: 12px;
+    margin: 0 2em;
+}
+
+.add_song_image {
+    margin-top: .7em;
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import './music.css';
-import song from '../../images/add_song.png'
+import song from '../../images/add_song.png';
+import Bootstrap, {Row, Col} from 'bootstrap';
 
 class Song extends React.Component {
     constructor(props) {
@@ -63,15 +64,16 @@ class Song extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-          <div>
-          <input type="text"  id="search" placeholder="SEARCH YOUTUBE" width="20" height="10" />
+          <div className="body"> 
+          <input type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
             <button onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
-              <div key={index}>
-                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" class="song_image"/>
-                {item.snippet.title}
-                {item.snippet.channelTitle}
-                <img src={song} alt="add song" class="add_song_image" width="20" id={index}/>
+              <div key={index} className="songInfo">
+                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" class="song_image" width="55" height="39"/>
+                <div>
+                  <div className="title">{item.snippet.title}</div>
+                </div>
+                <img src={song} alt="add song" className="add_song_image" width="15" height="15" id={index}/>
               </div>
             ))}
           </div>
