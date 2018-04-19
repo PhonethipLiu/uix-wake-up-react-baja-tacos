@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App';
+
 
 class News extends React.Component {
     constructor(props) {
