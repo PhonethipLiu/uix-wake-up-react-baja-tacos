@@ -3,12 +3,12 @@ import './App.css';
 import Header from './components/header/header';
 
 import News from './components/news/News';
-import Song from './components/music/music';
+import Song from './components/music/Music';
 import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 // import {Button} from 'reactstrap';
 
-import Login from './config/login';
+import Login from './config/Login';
 import LogOut from './config/Logout';
 import Register from './config/userRegistration';
 // import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';

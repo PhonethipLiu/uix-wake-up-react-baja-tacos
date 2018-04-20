@@ -56,14 +56,13 @@ class News extends React.Component {
 
         } else {
           
-          let articles = this.state.articles;
           let newsStory = articles.map((article, i) =>
           <div key={i} >
             <ul className="list-unstyled News-ul">
               <li className="News-li"> 
                 {/* <img className="News-photo" src={article.urlToImage} alt="news photo"/> */}
                 <div className="News-body"> 
-                  <h5 className="News-hed" a link={article.url}> {article.title}</h5>
+                  <h5 className="News-hed" url={article.url}> {article.title}</h5>
                   <p className="News-description"><span className="News-source">{article.source.name}</span>  &mdash; {article.description} </p> 
                 </div>
               </li>

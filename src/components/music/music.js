@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import $ from 'jquery';
-import './music.css';
+import './Music.css';
 import song from '../../images/add_song.png';
-import Bootstrap, {Row, Col} from 'bootstrap';
+// import Bootstrap, {Row, Col} from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class Song extends React.Component {
     constructor(props) {
