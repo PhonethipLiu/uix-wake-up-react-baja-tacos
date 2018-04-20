@@ -21,7 +21,7 @@ class App extends Component {
         <Header title="Profile:" name="User"/> 
 
           <div className="row mainBody">
-            <div className="col-3 leftDiv">
+            <div className="col-4 leftDiv">
               <div className="weatherDiv">  
               <Weather /> 
               </div>
@@ -33,7 +33,8 @@ class App extends Component {
               </div>
             </div>
 
-            <div className="col-5 newsDiv">
+            <div className="col-4 newsDiv">
+            <h2 className="News-label"> Top US news headlines</h2>
               <News />
             </div>
 

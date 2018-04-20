@@ -1,4 +1,6 @@
 .weatherRight{
-    background-color:rgb(223, 221, 221, .7);
+    /* background-color:rgb(223, 221, 221, .7); */
     border-radius: 10px;
+    color: white;
+    font-weight: 300;
 }
