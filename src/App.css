@@ -1,26 +1,45 @@
 .pageContainer{
-  background: linear-gradient(#DB2DAC,rgb(223, 63, 180), #ED854F, rgb(252, 219, 110), #FFFBD0);
+  background: linear-gradient(#DB2DAC, #ED854F, rgb(252, 219, 110), rgb(245, 245, 243));
+  font-family: 'Roboto', sans-serif;
 }
 .tempRender{
   font-size: 5em;
+  color: white;
+  text-shadow: 0 0 20px rgba(90, 3, 83, 0.5);
+}
+
+.leftDiv {
+  margin-left: 0;
+  margin-right: 1rem;
+  padding-left: 0;
 }
 .weatherDiv{
-margin: 10px;
-    background-color:rgb(223, 221, 221, .7);
+margin:0px;
+    /* background-color: rgba(253, 253, 251, 0.3); */
     border-radius: 10px;
+  
 }
 .songDiv{
-  margin: 10px;
-    background-color:rgb(223, 221, 221, .7);
-    border-radius: 10px;
+  margin-top: 2rem;;
+    /* background-color: rgba(204, 204, 202, 0.6); */
+    /* border-radius: 10px; */
+    border-top: 6px solid  rgba(204, 204, 202, 0.6);
+    padding-top: 2rem;
+    padding-right: 2rem;
 }
-.newsDiv{
-  border-style: solid;
-    border-width: 2px;
-    border-color: firebrick;
+.col-4.newsDiv{
+  margin-right: 2rem;
+  border-spacing: 2rem;
+  border-left: 1px solid  rgba(204, 204, 202, 0.6);
+  padding-left: 3rem;
+
 }
-.claenderDiv{
-  border-style: solid;
-    border-width: 2px;
-    border-color: orange;
+.col-3.calendarDiv{
+    border-left: 1px solid rgba(204, 204, 202, 0.6);
+    padding-left: 3rem;
+    padding-right: 0;
+}
+
+div.row.mainBody {
+  margin: 1rem 3rem;
 }

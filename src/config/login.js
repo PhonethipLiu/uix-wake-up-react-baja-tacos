@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { login, loginWithGoogle, resetPassword } from './userAuth'
-import {googleProvider} from './constants'
+import React, { Component } from 'react';
+import { login, loginWithGoogle, resetPassword } from './userAuth';
+import {googleProvider} from './constants';
 
 function setErrorMsg(error) {
   return {
