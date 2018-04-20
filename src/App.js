@@ -26,22 +26,24 @@ class App extends Component {
               <Weather /> 
               </div>
               <div className="songDiv">
+                <h2 className="Div-label"> Search Music</h2>
                 <Song />
               </div>
             </div>
 
             <div className="col-4 newsDiv">
-            <h2 className="News-label"> Top US news headlines</h2>
+            <h2 className="Div-label"> Top headlines</h2>
               <News />
             </div>
 
             <div className="col-3 calendarDiv">
-              <h2>Calender </h2>
-            </div>
-            <div className="col-12">
-                <Register />
-                <Login />
-                <LogOut />
+              <h2 className="Div-label">Calender </h2>
+            
+              <div className="Login-container">
+                  <Register />
+                  <Login />
+                  <LogOut />
+              </div>
             </div>
          </div>
 

@@ -1,19 +1,19 @@
-input {
+.Music-input {
     padding: .25em;
     width: 20.75%;
 }
 
-button {
+.Music-btn {
     padding: .25em;
     background-color: #ffffff;
     text-decoration: none;
 }
 
-.body {
+.Music-body {
     font-family: 'Roboto', sans-serif;
 }
 
-.songInfo {
+.Music-songInfo {
     display: flex;
     flex-direction: row;
     margin: .125em 0;
@@ -21,7 +21,7 @@ button {
     width: 25%;
 }
 
-.title {
+.Music-title {
     font-size: 12px;
     font-weight: 500;
     width: 200px;
@@ -29,11 +29,11 @@ button {
     margin-top: .125em;
 }
 
-.artist {
+.Music-artist {
     font-size: 12px;
     margin: 0 2em;
 }
 
-.add_song_image {
+.Music-addSongImage {
     margin-top: .7em;
 }

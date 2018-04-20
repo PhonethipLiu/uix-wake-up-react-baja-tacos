@@ -6,11 +6,15 @@
     
 }
 
-h2.News-label{
+h2.Div-label{
     color: white;
     text-shadow: 0 0 10px rgba(90, 3, 83, 0.735);
-
+    font-size: 1.3rem;
+    letter-spacing: .08rem;
+    text-transform: uppercase;
+    font-weight: 900;
 }
+
 p.News-description{
     font-size: .9rem;
     color: rgba(36, 36, 36, 0.851)
