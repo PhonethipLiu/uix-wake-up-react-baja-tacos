@@ -62,9 +62,9 @@ class News extends React.Component {
             <ul className="list-unstyled News-ul">
               <li className="News-li"> 
                 {/* <img className="News-photo" src={article.urlToImage} alt="news photo"/> */}
-                <div className="News-body"> <a link={article.url}>
-                  <h5 className="News-hed"> {article.title}</h5>
-                  <p className="News-description"><span className="News-source">{article.source.name}</span>  &mdash; {article.description} </p> </a>
+                <div className="News-body"> 
+                  <h5 className="News-hed" a link={article.url}> {article.title}</h5>
+                  <p className="News-description"><span className="News-source">{article.source.name}</span>  &mdash; {article.description} </p> 
                 </div>
               </li>
             </ul>
