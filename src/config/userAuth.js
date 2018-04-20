@@ -45,3 +45,16 @@ export function saveUser (user) {
       return user;
     })
 }
+
+export function saveSongs (user, songs) {
+  console.log("save user", user);
+  return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
+    .update({
+      song: songs
+
+    })
+    .then(() => {
+
+      return user;
+    })
+}

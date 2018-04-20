@@ -3,6 +3,12 @@ import $ from 'jquery';
 import './music.css';
 import song from '../../images/add_song.png';
 import Bootstrap, {Row, Col} from 'bootstrap';
+// import rebase from 're-base';
+import user, { saveSongs } from '../../config/userAuth';
+import { googleProvider, rebase }  from '../../config/constants';
+// import {saveSongs} from '../../config/userAuth';
+
+
 
 class Song extends React.Component {
     constructor(props) {
@@ -13,6 +19,8 @@ class Song extends React.Component {
         items: [],
         value: ''
       }
+
+      this.sendtoFirebase= this.sendtoFirebase.bind(this);
 
     }
 
@@ -55,6 +63,19 @@ class Song extends React.Component {
           }
         )
     }
+
+
+
+    sendtoFirebase(e, user) {
+      console.log(this.state.items[e.target.id].snippet.title);
+      console.log(e.target.id);
+        saveSongs(user, this.state.items[e.target.id].snippet.title)
+        return rebase.initializedApp.database().ref().child(`users/${this.props.user}/info`)
+          .set({
+            song: this.state.items[e.target.id].snippet.title,
+            image: this.state.items[e.target.id].snippet.thumbnails.default.url
+          })
+    }
   
     render() {
       const { error, isLoaded, items } = this.state;
@@ -68,7 +89,7 @@ class Song extends React.Component {
           <input type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
             <button onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
-              <div key={index}>
+              <div key={index} onClick={this.sendtoFirebase()}>
                 <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" className="song_image"/>
                 {item.snippet.title}
                 {item.snippet.channelTitle}
@@ -79,5 +100,18 @@ class Song extends React.Component {
         );
       }
     }
+
+    // saveUser (user) {
+    //   console.log("save user", user);
+    //   return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
+    //     .update({
+    //       email: user.email,
+    //       uid: user.uid
+    //     })
+    //     .then(() => {
+    
+    //       return user;
+    //     })
+    // }
   }
 export default Song;
