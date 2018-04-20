@@ -8,6 +8,9 @@ import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 // import {Button} from 'reactstrap';
 
+
+import CalendarRoot from './components/calender/CalendarRoot'
+
 import Login from './config/login';
 import LogOut from './config/Logout';
 import Register from './config/userRegistration';
@@ -16,6 +19,7 @@ import Register from './config/userRegistration';
 
 class App extends Component {
   render() {
+
     return (
       <div className="pageContainer">
         <Header title="Profile:" name="User"/> 
@@ -37,6 +41,8 @@ class App extends Component {
 
             <div className="col-3 calendarDiv">
               <h2>Calender </h2>
+            <CalendarRoot />
+
             </div>
             <div className="col-12">
                 <Register />
