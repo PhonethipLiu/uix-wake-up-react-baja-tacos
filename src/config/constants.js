@@ -2,10 +2,10 @@
 import Rebase from 're-base';
 import firebase from 'firebase';
 
-/**
- * Firebase config setup and init...
- * @type {[userAuthOBJ]}
- */
+// /**
+//  * Firebase config setup and init...
+//  * @type {[userAuthOBJ]}
+//  */
 
 const app = firebase.initializeApp({
   

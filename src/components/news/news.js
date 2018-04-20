@@ -1,89 +1,81 @@
-import React, { Component } from 'react';
-import './App.css';
-
-class News extends Component {
-    
-// console.log("News API data in the house");
-// News api key///////////
-// let newsAPI = "https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import './News.css';
 
 
-// function getNewsKey(){
-//     return{
-//         newsAPI: "511e64b5fdc44764af3517769a250375",
-//         authDomain: "https://newsapi.org/v2/top-headlines?country=us&limit=10",
-//         databaseURL: "https://mighty-muffin-avengers.firebaseio.com/",
-//         fbWebApiKey: "AIzaSyBMVc4fH_p-3aJfxx3En0kdzvNxrssHu6A"
-//     };
-// }
+class News extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        error: null,
+        newsLoaded: false,
+        articles: []
+      };
+    }
+    componentDidMount() {
+        console.log("news componentDidMount");
+        this.getNews();
+    }
 
-///////////////////////////////
-// let $ = require('jquery');
-// // let outputNews = require('./news-Setter');
+    getNews() {
+        console.log("getNews");
+      fetch(`https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+              console.log("news result:", result);
+              // const artArr = result;
+            this.setState({
+                newsLoaded: true,
+                articles: result.articles
+            });
+            // console.log("news articles source name:", result.articles[0].source.name, "news articles title:", result.articles[0].title, "news articles description:", result.articles[0].description, "news articles url:", result.articles[0].url, "news articles image:", result.articles[0].urlToImage);
+          },
+          // handle errors here
+          (error) => {
+            this.setState({
+                newsLoaded: true,
+                error: error
+            });
+          }
+        )
+    }
+  
+    render() {
+      const { error, newsLoaded, articles } = this.state;
+      
+      if (error) {
+        return <div><p>Error: {error.message}</p></div>;
 
-// let news ={};
-// let newsAPI = require('./apikeys');
-// var newsKey = newsAPI.getNewsKey();
-// var newsDiv = document.getElementById("news--div");
-// // console.log("targeting news div in dom", newsDiv);
-// var populateNewsDiv = $("#news--list"); //jQuery to put everything in an array
-// // console.log("what is in the populateNewDiv jquery", populateNewsDiv[0]);
+        } else if (!newsLoaded) {
+        return <div>Loading News...</div>;
 
-// function outputNews(newsList) {
-//     // console.log("what is this newArticle in the outputNews function", newsList);
-    
-//     if (newsList.articles) {
-//         for (let i = 0; i < 10; i++) {
-//             var articles= newsList.articles;
-//             // console.log("topNewsArticle", newsList);
-//             // console.log("News data title:", articles[i].title + articles[i].description  + articles[i].source + articles[i].url );
-//             populateNewsDiv.append(`<li>
-//             <h4 class="list-headline"><a class="list-link" target="_blank" href="${articles[i].url}">${articles[i].title} </a> </h4>
-//             <p class="list-summary">${articles[i].description} </p>
-//             <footer class="list-footer"> Source: ${articles[i].source.name}</footer>
-//             <button id="save--article--btn-${[i]}" type="button" class="btn btn-light btn-sm"> save article </button> </li>`);
-//         }
-//     }
-// }
+        } else {
+          
+          let topNews = this.state.articles;
+          let newsStory = topNews.map((article, i) =>
+          <div key={i} >
+            <ul className="list-unstyled News-ul">
+              <li className="News-li"> 
+                <img className="News-photo" src={article.urlToImage} alt="news photo" />
+                <div className="News-body"> <a link={article.url}>
+                  <h5 className="News-hed"> {article.title}</h5>
+                  <p className="News-description"><span className="News-source">{article.source.name}</span>  &mdash; {article.description} </p> </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+            );
 
-// function newsAPICall() {
-//     // console.log("newsKey", newsKey);
-//     let urlString = `${newsKey.authDomain}&apiKey=${newsKey.newsAPI}`;
-//     return $.ajax({
-//         url: `${newsKey.authDomain}&apiKey=${newsKey.newsAPI}`,
-//         dataType: "json"
-//     });
-// }
-
-
-// news = newsAPICall("https://newsapi.org/v2/top-headlines?country=us&limit=10")
-// .then ((resolve) => {
-//     // console.log("makeAPICall for top News Resolved", resolve); 
-//     outputNews(resolve); // I want it to do this function
-//     },
-//     (reject) => {
-//         console.log("DOH! something went wrong");
-//     }
-// );
-
-// module.exports = newsAPICall();
-//////////////////////////
-
-  render() {
-    return (
-        <div className="News-container">
-            <div className="News-card">
-                <h2 className="News-headline">Top 10 news of the day</h2>
-                <p className="News-article">
-                    xyxyxyyxyxy
-                </p>
-                <footer className="News-footer">
-                    <strong>Source:</strong> xyxyxyyxyxy
-                </footer>
-            </div>
-        </div>
-    );
-  }
+          newsStory.splice(10);
+        return (
+        
+            <div>
+              {newsStory}
+              </div>
+        )
+      }
+    }
 }
 
 export default News;

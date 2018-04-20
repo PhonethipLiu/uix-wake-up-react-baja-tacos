@@ -13,11 +13,11 @@ let Header = (props) => {
              <div className="col">
                 <LogoHeader pic={logoPic}/>
              </div>
-             <div className="col">
-                    <h2>Hello {props.name}</h2>
+             <div className="col navName">
+                    <h4>Hello {props.name}</h4>
              </div>
-             <div className="col">
-                   <h1>{props.title}</h1>
+             <div className="col navProfile">
+                   <h4>{props.title}</h4>
              </div>
              </nav>
           </div>
