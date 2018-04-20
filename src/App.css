@@ -1,28 +1,37 @@
-.App {
-  text-align: center;
+.pageContainer{
+  background: linear-gradient(#DB2DAC, #ED854F, rgb(252, 219, 110), rgb(245, 245, 243));
+  font-family: 'Roboto', sans-serif;
+}
+.tempRender{
+  font-size: 5em;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.leftDiv {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+.weatherDiv{
+margin: 10px;
+    background-color:rgb(223, 221, 221, .7);
+    border-radius: 10px;
+}
+.songDiv{
+  margin: 10px;
+    background-color:rgb(223, 221, 221, .7);
+    border-radius: 10px;
+}
+.col-5.newsDiv{
+  margin-right: 2rem;
+  border-spacing: 2rem;
+  border-left: 1px solid rgba(252, 219, 110, 0.81);
+  padding-left: 1rem;
+}
+.col-3.calendarDiv{
+    border-left: 1px solid rgba(252, 219, 110, 0.81);
+    padding-left: 3rem;
+    padding-right: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+div.row.mainBody {
+  margin: 1rem 4rem;
 }

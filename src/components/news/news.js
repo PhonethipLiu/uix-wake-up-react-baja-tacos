@@ -72,7 +72,7 @@ class News extends React.Component {
           let newsStory = topNews.map((article, i) =>
           <div key={i}>
             <ul>
-              <li> {article.title}  {article.source.name}  {article.description}  {article.url} {article.urlToImage}</li>
+              <li> {article.title}  {article.source.name}  {article.description}  {article.url} <img src={article.urlToImage}/> </li>
             </ul>
             </div>
             );
