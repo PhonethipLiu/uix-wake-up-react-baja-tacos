@@ -8,7 +8,7 @@ import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 // import {Button} from 'reactstrap';
 
-import Login from './config/Login';
+import Login from './config/login';
 import LogOut from './config/Logout';
 import Register from './config/userRegistration';
 // import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
