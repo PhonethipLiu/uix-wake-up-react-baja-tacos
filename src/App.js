@@ -27,9 +27,6 @@ class App extends Component {
               </div>
               <div className="songDiv">
                 <Song />
-                <Register />
-                <Login />
-                <LogOut />
               </div>
             </div>
 
@@ -41,9 +38,10 @@ class App extends Component {
             <div className="col-3 calendarDiv">
               <h2>Calender </h2>
             </div>
-            <div>
-            <Register />
-            <Login />
+            <div className="col-12">
+                <Register />
+                <Login />
+                <LogOut />
             </div>
          </div>
 
