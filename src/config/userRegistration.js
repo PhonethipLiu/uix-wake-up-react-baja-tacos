@@ -31,7 +31,7 @@ class Register extends Component {
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
-        <h1>Register</h1>
+        <h3>Register</h3>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Email</label>

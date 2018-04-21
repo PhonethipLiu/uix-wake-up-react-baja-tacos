@@ -1,25 +1,50 @@
 .News-photo {
     width: 100%;
-    height: auto;
-    object-fit: scale-down;
+    height: 50%;
+    object-fit: contain;
     padding-bottom: 1rem;
-    
 }
 
-h2.News-label{
+h2.Div-label {
     color: white;
     text-shadow: 0 0 10px rgba(90, 3, 83, 0.735);
-
+    font-size: 1.3rem;
+    letter-spacing: .08rem;
+    text-transform: uppercase;
+    font-weight: 900;
 }
-p.News-description{
+
+h5.News-hed a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500 !important;
+    font-size: 1.3rem;
+    color: rgb(22, 22, 22);
+    text-decoration: none;
+}
+
+h5.News-hed a:hover {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 1.2rem !important;
+    color: rgb(124, 16, 83);
+    text-decoration: none;
+}
+
+p.News-description {
     font-size: .9rem;
-    color: rgba(36, 36, 36, 0.851)
+    color: rgb(26, 26, 26);
+    line-height: 1.2rem;
 }
 
-span.News-source{
+span.News-source {
     font-size: .8rem;
     text-transform: uppercase;
     font-family: 'Roboto', sans-serif;
     font-weight: 700 !important;
+}
 
+.News-photo {
+    width: 100%;
+    height: auto;
+    object-fit: scale-down;
 }

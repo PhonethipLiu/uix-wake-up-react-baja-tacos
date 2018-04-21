@@ -2,13 +2,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  line-height: 1.5rem;
+  line-height: 1rem;
+  width: 100%;
+  /* background: linear-gradient(#DB2DAC, #ED854F, rgb(252, 219, 110), rgb(245, 245, 243)); */
+  /* font-family: 'Roboto', sans-serif; */
+  width: 100%;
+  /* position: fixed; */
 }
 
 h1, h2, h3, h5 {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
 }
+
 h6 {
   font-family: 'Roboto', sans-serif;
   font-weight: 900 !important;
