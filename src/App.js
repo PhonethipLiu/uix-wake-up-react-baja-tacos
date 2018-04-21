@@ -80,7 +80,7 @@ class App extends Component {
         <Header title="Profile:" name="User"/> 
 
           <div className="row mainBody">
-            <div className="col-4 leftDiv">
+            <div className="col-sm col-md-3 col-lg-3 leftDiv">
              
               <div className="weatherDiv">  
                <Weather userObj={this.state.userObj}
@@ -88,31 +88,26 @@ class App extends Component {
               </div>
              
               <div className="songDiv">
-                <h2 className="Div-label"> Search Music</h2>
+                <h2 className="Div-label order-10"> Search Music</h2>
                 <Song />
               </div>
             </div>
 
-            <div className="col-4 newsDiv">
-            <h2 className="Div-label"> Top headlines</h2>
+            <div className="col-sm col-md-3 col-lg-4 newsDiv">
+            <h2 className="Div-label order-2 "> Top headlines</h2>
               <News />
             </div>
 
-            <div className="col-3 calendarDiv">
-
-              <h2 className="Div-label"> Calender </h2>
-                <CalendarRoot />
-              </div>
-
-              <div className="col-12">
+            <div className="col-sm col-md-3 col-lg-3 justify-content-end calendarDiv">
+              <div className="Login-container order-1 ">
                 <Register />
                 <Login />
                 <LogOut />
-
+              </div>
+              <h2 className="Div-label"> Calender </h2>
+                <CalendarRoot />  
             </div>
-            
          </div>
-
       </div>
     );
   }

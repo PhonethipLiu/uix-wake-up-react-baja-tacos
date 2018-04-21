@@ -8,21 +8,19 @@ let Header = (props) => {
 
     return(
       <div className="header-navbar">
-        
-            <div className="row navRow">
-                <nav className="nav navHeader">
-                <div className="col">
-                <LogoHeader pic={logoPic}/>
+            <nav className="navHeader">
+                <div className="row navRow align-items-end">
+                    <div className="col-sm col-lg-4"> 
+                    <LogoHeader pic={logoPic} className="col-sm"/>
+                   </div> 
+                    <div className="col-sm navName text-center align-items-end">
+                        <h4>Hello {props.name}</h4>
+                    </div>
+                    <div className="col-sm navProfile text-center">
+                        <h4>{props.title}</h4>
+                    </div>
                 </div>
-                <div className="col navName text-right">
-                    <h4>Hello {props.name}</h4>
-                </div>
-                <div className="col navProfile text-center">
-                    <h4>{props.title}</h4>
-                </div>
-                </nav>
-            </div>
-        
+            </nav>
       </div>    
     );
 }

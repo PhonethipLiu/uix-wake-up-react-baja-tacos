@@ -18,7 +18,7 @@ class Song extends React.Component {
     }
 
   handleChange() {
-    this.state = {
+    this.State = {
       error: null,
       isLoaded: false,
       items: [],
