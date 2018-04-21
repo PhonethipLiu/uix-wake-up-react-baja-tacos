@@ -10,7 +10,6 @@ let NewsItem = (props) => {
       <h5 className="News-hed"> <a href={props.url}>{props.title} </a></h5> 
       <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p> 
     </div>
-  
   )
 }
 
@@ -63,26 +62,25 @@ class News extends React.Component {
         } else {
           
           let NewsList = articles.map((article, i) =>
-          <div key={i} >
+          <div key={i} className="News-item">
             <NewsItem
               image = {article.urlToImage}
               url = {article.url}
               title = {article.title}
               source = {article.source.name}
-              description = {article.description} 
-            />
+              description = {article.description} />
           </div>
           );
 
           NewsList.splice(10);
         return (
         
-            <div>
-              {NewsList}
+            <div className="News-feed">
+              { NewsList }
               </div>
         )
       }
     }
 }
 
-export default News;
+export default News; 

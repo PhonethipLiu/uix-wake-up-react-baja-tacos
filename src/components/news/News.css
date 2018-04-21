@@ -48,3 +48,7 @@ span.News-source {
     height: auto;
     object-fit: scale-down;
 }
+
+.News-item {
+    margin-bottom: 1rem;
+}
