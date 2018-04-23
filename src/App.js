@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/header/header';
-import {rebase} from '../config/constants';
+import {rebase} from './config/Constants';
 import firebase from 'firebase'
-import News from './components/news/News';
+import News from './components/news/Topnews';
 import Song from './components/music/Music';
 import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
