@@ -8,7 +8,7 @@ import Song from './components/music/music';
 import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 import CalendarRoot from './components/calender/CalendarRoot'
-import Login from './config/login';
+import Login from './config/Login';
 import LogOut from './config/Logout';
 import Register from './config/userRegistration';
 import { initializeApp } from 'firebase/app';
