@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './News.css';
+import './news.css';
 import firebase from 'firebase';
 import {rebase, user} from './config/constants';
 

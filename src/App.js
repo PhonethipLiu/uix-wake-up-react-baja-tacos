@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/header/header';
-import {rebase} from './config/constants';
+import {rebase} from '../config/constants';
 import firebase from 'firebase'
 import News from './components/news/News';
 import Song from './components/music/Music';
