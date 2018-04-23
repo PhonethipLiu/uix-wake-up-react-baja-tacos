@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './news.css';
 import firebase from 'firebase';
-import {rebase, user} from './config/constants';
+import {rebase, user} from './config/Constants';
 
 
 let NewsItem = (props) => {
