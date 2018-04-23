@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import $ from 'jquery';
 import './music.css';
 import song from '../../images/add_song.png';
 import Bootstrap, {Row, Col} from 'bootstrap';
 // import rebase from 're-base';
-import user, { saveSongs } from '../../config/userAuth';
+import { saveSongs } from '../../config/userAuth';
 import { googleProvider, rebase }  from '../../config/constants';
 // import {saveSongs} from '../../config/userAuth';
 
@@ -25,7 +25,7 @@ class Song extends React.Component {
     }
 
   handleChange() {
-    this.state = {
+    this.State = {
       error: null,
       isLoaded: false,
       items: [],
@@ -66,14 +66,15 @@ class Song extends React.Component {
 
 
 
-    sendtoFirebase(e, user) {
-      // console.log(this.state.items[e.target.id].snippet.title);
+    sendtoFirebase(e) {
+      console.log(this.state.items[e.target.id].snippet.title);
       console.log(e.target.id);
-        saveSongs(user, this.state.items[e.target.id].snippet.title)
-        return rebase.initializedApp.database().ref().child(`users/${this.props.user}/info`)
-          .set({
+        // saveSongs(user, this.state.items[e.target.id].snippet.title)
+        return rebase.initializedApp.database().ref().child(`users/${this.props.userObj.uid}/info/songs`)
+          .push({
             song: this.state.items[e.target.id].snippet.title,
-            image: this.state.items[e.target.id].snippet.thumbnails.default.url
+            image: this.state.items[e.target.id].snippet.thumbnails.default.url,
+            uid: this.props.userObj.uid
           })
     }
   
@@ -85,15 +86,15 @@ class Song extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-          <div className="body"> 
-          <input type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
-            <button onClick={this.handleChange.bind(this)} type="submit">Search</button>
+          <div className="Music-body"> 
+          <input className="Music-input" type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
+            <button className="Music-btn" onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
-              <div key={index} onClick={this.sendtoFirebase(e)}>
+              <div key={index} onClick={this.sendtoFirebase}>
                 <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" className="song_image"/>
                 {item.snippet.title}
                 {item.snippet.channelTitle}
-                <img src={song} alt="add song" className="add_song_image" width="20" id={index}/>
+                <img src={song} alt="add song" className="Music-addSongImage" width="20" id={index}/>
               </div>
             ))}
           </div>
@@ -101,17 +102,5 @@ class Song extends React.Component {
       }
     }
 
-    // saveUser (user) {
-    //   console.log("save user", user);
-    //   return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
-    //     .update({
-    //       email: user.email,
-    //       uid: user.uid
-    //     })
-    //     .then(() => {
-    
-    //       return user;
-    //     })
-    // }
   }
 export default Song;

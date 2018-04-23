@@ -1,14 +1,12 @@
 .navHeader{
     background-color:#DB2DAC;
     width: 100%;
-    height: 150px;
+    height: auto;
     box-shadow:20px 0px 100px rgba(90, 3, 83, 0.735);
-    padding-top: 2.6rem;
-    padding-bottom: 2rem;
-}
-.navRow{
+    padding: 2rem 4rem 2rem 4rem;
     margin-bottom: 3rem;
-    
+    position: fixed;
+    z-index: 100;
 }
 
 .header-navbar{
@@ -18,6 +16,5 @@
 
 col.navName h4 {
     font-weight: 100;
-    text-align: end; 
-    /* padding-right: 4rem; */
 }
+

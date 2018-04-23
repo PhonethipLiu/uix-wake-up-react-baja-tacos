@@ -2,6 +2,17 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './News.css';
 
+let NewsItem = (props) => {
+  return (
+     
+    <div className="News-body"> 
+      <img src={props.image}  className="News-photo" alt=""/> 
+      <h5 className="News-hed"> <a href={props.url}>{props.title} </a></h5> 
+      <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p> 
+    </div>
+  
+  )
+}
 
 class News extends React.Component {
     constructor(props) {
@@ -29,7 +40,6 @@ class News extends React.Component {
                 newsLoaded: true,
                 articles: result.articles
             });
-            // console.log("news articles source name:", result.articles[0].source.name, "news articles title:", result.articles[0].title, "news articles description:", result.articles[0].description, "news articles url:", result.articles[0].url, "news articles image:", result.articles[0].urlToImage);
           },
           // handle errors here
           (error) => {
@@ -52,26 +62,23 @@ class News extends React.Component {
 
         } else {
           
-          let topNews = this.state.articles;
-          let newsStory = topNews.map((article, i) =>
+          let NewsList = articles.map((article, i) =>
           <div key={i} >
-            <ul className="list-unstyled News-ul">
-              <li className="News-li"> 
-                <img className="News-photo" src={article.urlToImage} alt="news photo" />
-                <div className="News-body"> <a link={article.url}>
-                  <h5 className="News-hed"> {article.title}</h5>
-                  <p className="News-description"><span className="News-source">{article.source.name}</span>  &mdash; {article.description} </p> </a>
-                </div>
-              </li>
-            </ul>
+            <NewsItem
+              image = {article.urlToImage}
+              url = {article.url}
+              title = {article.title}
+              source = {article.source.name}
+              description = {article.description} 
+            />
           </div>
-            );
+          );
 
-          newsStory.splice(10);
+          NewsList.splice(10);
         return (
         
             <div>
-              {newsStory}
+              {NewsList}
               </div>
         )
       }

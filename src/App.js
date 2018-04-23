@@ -7,17 +7,11 @@ import News from './components/news/news';
 import Song from './components/music/music';
 import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
-// import {Button} from 'reactstrap';
-
-
 import CalendarRoot from './components/calender/CalendarRoot'
-
 import Login from './config/login';
 import LogOut from './config/Logout';
 import Register from './config/userRegistration';
 import { initializeApp } from 'firebase/app';
-// import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
-// import {Button} from 'reactstrap';
 
 const defaultZip = 37221;
 
@@ -86,7 +80,7 @@ class App extends Component {
         <Header title="Profile:" name="User"/> 
 
           <div className="row mainBody">
-            <div className="col-4 leftDiv">
+            <div className="col-sm col-md-3 col-lg-3 leftDiv">
              
               <div className="weatherDiv">  
                <Weather userObj={this.state.userObj}
@@ -94,31 +88,26 @@ class App extends Component {
               </div>
              
               <div className="songDiv">
-                <Song
-                user={this.state.user} />
+                <h2 className="Div-label order-10"> Search Music</h2>
+                <Song userObj={this.state.userObj}/>
+              </div>
+            </div>
+
+            <div className="col-sm col-md-3 col-lg-4 newsDiv">
+            <h2 className="Div-label order-2 "> Top headlines</h2>
+              <News />
+            </div>
+
+            <div className="col-sm col-md-3 col-lg-3 justify-content-end calendarDiv">
+              <div className="Login-container order-1 ">
                 <Register />
                 <Login />
                 <LogOut />
               </div>
-            </div>
-
-            <div className="col-4 newsDiv">
-            <h2 className="News-label"> Top US news headlines</h2>
-              <News />
-            </div>
-
-            <div className="col-3 calendarDiv">
-              <h2>Calender </h2>
-            <CalendarRoot />
-
-            </div>
-            <div className="col-12">
-                <Register />
-                <Login />
-                <LogOut />
+              <h2 className="Div-label"> Calender </h2>
+                <CalendarRoot />  
             </div>
          </div>
-
       </div>
     );
   }
