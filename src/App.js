@@ -3,8 +3,8 @@ import './App.css';
 import Header from './components/header/header';
 import {rebase} from './config/constants';
 import firebase from 'firebase'
-import News from './components/news/news';
-import Song from './components/music/music';
+import News from './components/news/News';
+import Song from './components/music/Music';
 import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 import CalendarRoot from './components/calender/CalendarRoot'
