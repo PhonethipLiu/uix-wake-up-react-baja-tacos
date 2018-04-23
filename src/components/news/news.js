@@ -1,14 +1,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './News.css';
+import firebase from 'firebase';
+import {rebase, user} from './config/constants';
+
 
 let NewsItem = (props) => {
   return (
-     
     <div className="News-body"> 
       <img src={props.image}  className="News-photo" alt=""/> 
       <h5 className="News-hed"> <a href={props.url}>{props.title} </a></h5> 
-      <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p> 
+      <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p>  
+      <button type="button" onClick={this.handleAddArticle} className="btn btn-info"> Save Article </button>
     </div>
   )
 }
@@ -20,12 +23,34 @@ class News extends React.Component {
         error: null,
         newsLoaded: false,
         articles: []
-      };
+      }
+      this.getSavedArticles = this.getSavedArticles.bind(this);
     }
+
     componentDidMount() {
         console.log("news componentDidMount");
         this.getNews();
     }
+
+    getSavedArticles(e){
+      console.log("what is getSaveArticles")
+      let savedArticle = this.state.articles[e.target.id];
+      var userRef = firebase.database().ref(`/news/${this.props.uid}`);
+        user.Ref.push({ image : savedArticle.urlToImage,
+                        url: savedArticle.url,
+                        title: savedArticle.title,
+                        source: savedArticle.source.name,
+                        description: savedArticle.description,
+                        uid: this.props.uid });
+
+      this.setState ({
+        error: null,
+        newsLoaded: false,
+        articles: []
+        },
+        this.getNews());
+    }
+
 
     getNews() {
         console.log("getNews");

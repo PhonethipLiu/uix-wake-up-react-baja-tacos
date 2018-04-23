@@ -5,19 +5,10 @@
     padding-bottom: 1rem;
 }
 
-h2.Div-label {
-    color: white;
-    text-shadow: 0 0 10px rgba(90, 3, 83, 0.735);
-    font-size: 1.3rem;
-    letter-spacing: .08rem;
-    text-transform: uppercase;
-    font-weight: 900;
-}
-
 h5.News-hed a {
     font-family: 'Roboto', sans-serif;
     font-weight: 500 !important;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: rgb(22, 22, 22);
     text-decoration: none;
 }
@@ -43,13 +34,17 @@ span.News-source {
     font-weight: 700 !important;
 }
 
-.News-photo {
-    width: 100%;
-    height: auto;
-    object-fit: scale-down;
+.News-body {
+    margin-bottom: 2rem;
 }
 
 .News-item {
     margin-bottom: 1rem;
-    color: #6FB2A0;
+    /* color: #6FB2A0; */
+}
+
+.btn-info {
+    background-color: #6FB2A0;
+    border-color: #6FB2A0;
+    border-radius: 0;
 }
