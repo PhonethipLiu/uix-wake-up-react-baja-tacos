@@ -1,9 +1,14 @@
 import React from 'react';
 import $ from 'jquery';
-import './Music.css';
+import './music.css';
 import song from '../../images/add_song.png';
-// import Bootstrap, {Row, Col} from 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import Bootstrap, {Row, Col} from 'bootstrap';
+// import rebase from 're-base';
+import { saveSongs } from '../../config/userAuth';
+import { googleProvider, rebase }  from '../../config/constants';
+// import {saveSongs} from '../../config/userAuth';
+
+
 
 class Song extends React.Component {
     constructor(props) {
@@ -14,6 +19,8 @@ class Song extends React.Component {
         items: [],
         value: ''
       }
+
+      this.sendtoFirebase= this.sendtoFirebase.bind(this);
 
     }
 
@@ -56,6 +63,20 @@ class Song extends React.Component {
           }
         )
     }
+
+
+
+    sendtoFirebase(e) {
+      console.log(this.state.items[e.target.id].snippet.title);
+      console.log(e.target.id);
+        // saveSongs(user, this.state.items[e.target.id].snippet.title)
+        return rebase.initializedApp.database().ref().child(`users/${this.props.userObj.uid}/info/songs`)
+          .push({
+            song: this.state.items[e.target.id].snippet.title,
+            image: this.state.items[e.target.id].snippet.thumbnails.default.url,
+            uid: this.props.userObj.uid
+          })
+    }
   
     render() {
       const { error, isLoaded, items } = this.state;
@@ -69,8 +90,8 @@ class Song extends React.Component {
           <input className="Music-input" type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
             <button className="Music-btn" onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
-              <div key={index}>
-                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" className="Song-image"/>
+              <div key={index} onClick={this.sendtoFirebase}>
+                <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" className="song_image"/>
                 {item.snippet.title}
                 {item.snippet.channelTitle}
                 <img src={song} alt="add song" className="Music-addSongImage" width="20" id={index}/>
@@ -80,5 +101,6 @@ class Song extends React.Component {
         );
       }
     }
+
   }
 export default Song;

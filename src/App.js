@@ -3,12 +3,12 @@ import './App.css';
 import Header from './components/header/header';
 import {rebase} from './config/constants';
 import firebase from 'firebase'
-import News from './components/news/News';
-import Song from './components/music/Music';
+import News from './components/news/news';
+import Song from './components/music/music';
 import Weather from './components/weather/weather';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 import CalendarRoot from './components/calender/CalendarRoot'
-import Login from './config/Login';
+import Login from './config/login';
 import LogOut from './config/Logout';
 import Register from './config/userRegistration';
 import { initializeApp } from 'firebase/app';
@@ -89,7 +89,7 @@ class App extends Component {
              
               <div className="songDiv">
                 <h2 className="Div-label order-10"> Search Music</h2>
-                <Song />
+                <Song userObj={this.state.userObj}/>
               </div>
             </div>
 
