@@ -29,11 +29,8 @@
     margin-top: .125em;
 }
 
-.Music-artist {
-    font-size: 12px;
-    margin: 0 2em;
-}
-
 .Music-addSongImage {
     margin-top: .7em;
+    width: 20px;
+    height: 20px;
 }

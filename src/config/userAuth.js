@@ -37,7 +37,7 @@ export function resetPassword (email) {
 export function saveUser (user) {
   console.log("save user", user);
   return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
-    .set({
+    .update({
       email: user.email,
       uid: user.uid
     })
@@ -47,6 +47,18 @@ export function saveUser (user) {
     })
 }
 
+export function saveSongs (user, songs) {
+  console.log("save user", user);
+  return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
+    .update({
+      song: songs
+
+    })
+    .then(() => {
+
+      return user;
+    })
+}
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
