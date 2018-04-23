@@ -67,7 +67,7 @@ class Song extends React.Component {
 
 
     sendtoFirebase(e, user) {
-      console.log(this.state.items[e.target.id].snippet.title);
+      // console.log(this.state.items[e.target.id].snippet.title);
       console.log(e.target.id);
         saveSongs(user, this.state.items[e.target.id].snippet.title)
         return rebase.initializedApp.database().ref().child(`users/${this.props.user}/info`)
@@ -89,7 +89,7 @@ class Song extends React.Component {
           <input type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
             <button onClick={this.handleChange.bind(this)} type="submit">Search</button>
             {items.map((item, index) => (
-              <div key={index} onClick={this.sendtoFirebase()}>
+              <div key={index} onClick={this.sendtoFirebase(e)}>
                 <img src={item.snippet.thumbnails.default.url} alt="song thumbnail" className="song_image"/>
                 {item.snippet.title}
                 {item.snippet.channelTitle}

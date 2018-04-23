@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 // import { Modal, ModalHeader, ModalBody, ModalFooter} from 'react-bootstrap';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import './weather.css';
+import firebase from 'firebase';
 
-let zipCode = 37203;
 
 class Weather extends Component {
     constructor(props) {
@@ -16,38 +16,52 @@ class Weather extends Component {
             modal: false
         }
     this.toggle = this.toggle.bind(this);
+    this.getWeather = this.getWeather.bind(this);
+    this.getUser = this.getUser.bind(this);
     }
     toggle(props){
         this.setState({
             modal: !this.state.modal
         });
-        console.log("you clicked", this.state);
     }
 
     componentDidMount() {
-        console.log("componentDidMount");
-        this.getWeather();
+        console.log("ZIP", this.props.userObj)
+        this.getWeather(this.props.userObj.zip);
+    }
+
+    getUser() {
+        var userZip = this.props.userObj.zip;
+        console.log("userZip", userZip);
+        this.getWeather(userZip);
     }
     
-      changeZipClick() {
-          console.log("change zip code");
-          zipCode = document.getElementById("zipCodeInput").value;
-          console.log("new zipcode:", zipCode);
-            this.setState({
-                weatherLoaded: false,
-                objResult: {},
-                error: null,
-            }, this.setState({
-                modal: !this.state.modal
-            }), this.getWeather());
+      changeZipClick = ()=> {
+      // console.log("get another");
+      let zipCode = parseInt(document.getElementById("zip").value);
+      console.log("get another clicked zipcode", zipCode);
+
+      this.props.updateZip(zipCode);
+      
+  //     var userRef = firebase.database().ref(`/users/${this.props.uid}`);
+  //     userRef.update({ zip: zipCode });
+      
+  //     this.setState({
+  //         weatherLoaded: false,
+  //         objResult: {},
+  //         error: null,
+  //         zip: zipCode,
+  //     }, 
+  this.setState({         
+  modal: !this.state.modal
+      })
+  this.getWeather(zipCode);
+  // }
       }
 
-
-
-
-    getWeather() {
-        console.log("get weather");
-        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=f5f69f7deb5aae2ed812df935759b130&units=imperial`)
+    getWeather(zip) {
+        console.log("get weather", zip);
+        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=f5f69f7deb5aae2ed812df935759b130&units=imperial`)
         .then(res => res.json())
         .then(
             (result) => {
@@ -55,7 +69,7 @@ class Weather extends Component {
                 this.setState({
                     weatherLoaded: true,
                     objResult: result,
-                    isHidden: true
+                    // isHidden: true
                 });
             },
             (error) => {
@@ -102,7 +116,7 @@ class Weather extends Component {
                            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                               <ModalHeader toggle={this.toggle}></ModalHeader>
                                 <ModalBody>
-                                    <input id="zipCodeInput" type="text" className="zipinput" placeholder="New Zipcode"></input>
+                                    <input id="zip" type="text" className="zipinput" placeholder="New Zipcode"></input>
                                 </ModalBody>
                                 <ModalFooter>
                                     <button className="changeButton" onClick={this.changeZipClick.bind(this)}><p>Change Zipcode</p></button>
