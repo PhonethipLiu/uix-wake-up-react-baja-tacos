@@ -37,7 +37,7 @@ export function resetPassword (email) {
 export function saveUser (user) {
   console.log("save user", user);
   return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
-    .set({
+    .update({
       email: user.email,
       uid: user.uid
     })
