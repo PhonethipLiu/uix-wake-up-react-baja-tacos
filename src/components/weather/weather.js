@@ -74,7 +74,7 @@ class Weather extends Component {
             },
             (error) => {
                 console.log("error");
-                this.steState({
+                this.setState({
                     isLoaded: true,
                     error: error
                 });

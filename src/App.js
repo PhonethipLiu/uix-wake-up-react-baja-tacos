@@ -88,7 +88,7 @@ class App extends Component {
               </div>
              
               <div className="songDiv">
-                <h2 className="Div-label order-10"> Search Music</h2>
+                <h2 className="Div-label order-10">Your Playlist</h2>
                 <Song userObj={this.state.userObj}/>
               </div>
             </div>
