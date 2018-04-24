@@ -131,9 +131,9 @@ class Song extends React.Component {
       } else {
         return (
           <div className="Music-body">
-                        <iframe id="player" type="text/html" class="col" align="center" width="320" height="195"
+                        <iframe id="player" type="text/html" align="center" width="320" height="195"
         src="http://www.youtube.com/embed/btPJPFnesV4?"
-        frameborder="0"></iframe> 
+        frameBorder="0"></iframe> 
             {Object.keys(this.state.playlist).map(this.renderSongs)}
             <input className="Music-input" type="text"  id="search" placeholder="SEARCH YOUTUBE"/>
             <button className="Music-btn" onClick={this.handleChange.bind(this)} type="submit">Search</button>
