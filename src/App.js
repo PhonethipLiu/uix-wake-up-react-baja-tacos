@@ -100,7 +100,6 @@ class App extends Component {
 
             <div className="col-sm col-md-3 col-lg-3 justify-content-end calendarDiv">
               <div className="Login-container order-1 ">
-                <Register />
                 <Login />
                 <LogOut />
               </div>
