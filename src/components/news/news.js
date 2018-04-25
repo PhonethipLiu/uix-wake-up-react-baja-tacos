@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './news.css';
-import {rebase} from '../../config/constants';
+import {googleProvider,rebase} from '../../config/constants';
 import { saveArticles } from '../../config/userAuth';
 
 
@@ -23,12 +23,12 @@ class News extends React.Component {
         error: null,
         newsLoaded: false,
         articles: [],
-        savedNews: [],
+        savedNews: {},
         
       }
     
       this.savedArticle = this.savedArticle.bind(this);
-      // this.authHandler = this.authHandler.bind(this);
+      this.authHandler = this.authHandler.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.addArticle = this.addArticle.bind(this);
       this.updateArticle = this.updateArticle.bind(this);
@@ -36,6 +36,7 @@ class News extends React.Component {
       this.showSavedArticle = this.showSavedArticle.bind(this);
     }
 
+// this will be the info sent to firebase in savedNew array in this state
     savedArticle(e) {
       const articleObj = {
             image : this.state.articles[e.target.id].urlToImage,
@@ -49,11 +50,13 @@ class News extends React.Component {
       this.addArticle(articleObj);
     }
 
+    // this will be added to firebase with a unique id
     addArticle(articleObj){
       const savedNews = {...this.state.savedNews};
       const timestamp = Date.now();
       savedNews[`articleObj-${timestamp}`] = articleObj;
       this.setState({ savedNews });
+      this.send();
     }
 
     updateArticle = (key, updatedArticle) => {
@@ -67,14 +70,14 @@ class News extends React.Component {
       const savedNews = {...this.state.savedNews};
       savedNews[key] = null;
       this.setState({ savedNews });
-      // this.componentWillUnmount();
+      this.componentWillUnmount();
     }
-
-    componentWillMount() {
+//componentWillMount
+    send() {
       this.ref = rebase.syncState(`users/${this.props.userObj.uid}/news`, {
         context: this,
         state: 'savedNews',
-        asArray: true,
+        // asArray: true,
       });
     }
 
@@ -101,20 +104,20 @@ class News extends React.Component {
     this.savedArticle(e);
   };
 
-  // authHandler(err, userData){
-  //   if(err){
-  //     return;
-  //   }
-  //   const userRef = rebase.initializedApp.database().ref(userData);
-  //   console.log("News articles: authHandler:userRef", userRef);
+  authHandler(err, userData){
+    if(err){
+      return;
+    }
+    const userRef = rebase.initializedApp.database().ref(userData);
+    console.log("News articles: authHandler:userRef", userRef);
 
-  //   userRef.once('value', (snapshot) => {
-  //     const data = snapshot.val() || {};
-  //     this.setState({
-  //       uid: userData,
-  //     })
-  //   })
-  // }
+    userRef.once('value', (snapshot) => {
+      const data = snapshot.val() || {};
+      this.setState({
+        uid: userData,
+      })
+    })
+  }
 
   getNews() {
     console.log("getNews");
@@ -123,11 +126,9 @@ class News extends React.Component {
     .then(
       (result) => {
           console.log("news result:", result);
-          // const artArr = result;
         this.setState({
             newsLoaded: true,
             articles: result.articles,
-            // users: this.props.userObj.uid
         });
       },
       // handle errors here
@@ -137,7 +138,6 @@ class News extends React.Component {
             error
         });
       })
-      // this.syncSavedNews();
 }
 
     showSavedArticle(key){

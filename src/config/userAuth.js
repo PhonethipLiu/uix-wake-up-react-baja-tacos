@@ -47,29 +47,29 @@ export function saveUser (user) {
     })
 }
 
-export function saveSongs (user, songs) {
-  console.log("save user", user);
-  return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
-    .update({
-      song: songs
+// export function saveSongs (user, songs) {
+//   console.log("save user", user);
+//   return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
+//     .update({
+//       song: songs
 
-    })
-    .then(() => {
+//     })
+//     .then(() => {
 
-      return user;
-    })
-}
+//       return user;
+//     })
+// }
 
-export function saveArticles (user, articles) {
-      console.log("save user", user);
-      return rebase.initializedApp.database().ref().child(`users/${user.uid}/news`)
-        .update({
-          news: articles
-        })
-        .then(() => {
-          return user;
-        })
-    }
+// export function saveArticles (user, articles) {
+//       console.log("save user", user);
+//       return rebase.initializedApp.database().ref().child(`users/${user.uid}/news`)
+//         .update({
+//           news: articles
+//         })
+//         .then(() => {
+//           return user;
+//         })
+//     }
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
