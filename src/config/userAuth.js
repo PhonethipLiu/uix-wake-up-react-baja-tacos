@@ -39,7 +39,7 @@ export function saveUser (user) {
   return rebase.initializedApp.database().ref().child(`users/${user.uid}/info`)
     .update({
       email: user.email,
-      uid: user.uid
+      uid: user.uid,
     })
     .then(() => {
 
@@ -59,6 +59,17 @@ export function saveSongs (user, songs) {
       return user;
     })
 }
+
+export function saveArticles (user, articles) {
+      console.log("save user", user);
+      return rebase.initializedApp.database().ref().child(`users/${user.uid}/news`)
+        .update({
+          news: articles
+        })
+        .then(() => {
+          return user;
+        })
+    }
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {

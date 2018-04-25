@@ -95,7 +95,7 @@ class App extends Component {
 
             <div className="col-sm col-md-3 col-lg-4 newsDiv">
             <h2 className="Div-label order-2 "> Top headlines</h2>
-              <News />
+              <News userObj={this.state.userObj}/>
             </div>
 
             <div className="col-sm col-md-3 col-lg-3 justify-content-end calendarDiv">

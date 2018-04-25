@@ -1,111 +1,226 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './news.css';
-import firebase from 'firebase';
-import {rebase, user} from '../../config/constants';
+import {rebase} from '../../config/constants';
+import { saveArticles } from '../../config/userAuth';
 
 
-let NewsItem = (props) => {
-  return (
-    <div className="News-body"> 
-      <img src={props.image}  className="News-photo" alt=""/> 
-      <h5 className="News-hed"> <a href={props.url}>{props.title} </a></h5> 
-      <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p>  
-      <button type="button" onClick={this.handleAddArticle} className="btn btn-info"> Save Article </button>
-    </div>
-  )
-}
+// let NewsItem = (props) => {
+//   return (
+//       <div className="News-body"> 
+//         <img src={props.image}  className="News-photo" alt=""/> 
+//         <h5 className="News-hed"> <a href={props.url} target="_blank">{props.title} </a></h5> 
+//         <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p>  
+//       </div>
+//   )
+// }
+
+
+ // <NewsItem
+              //   image = {article.urlToImage}
+              //   url = {article.url}
+              //   title = {article.title}
+              //   source = {article.source.name}
+              //   description = {article.description}
+              //   />
 
 class News extends React.Component {
     constructor(props) {
       super(props);
+
       this.state = {
         error: null,
         newsLoaded: false,
-        articles: []
+        articles: [],
+        savedNews: [],
+        user: ''
       }
-      this.getSavedArticles = this.getSavedArticles.bind(this);
+    
+      this.savedArticle = this.savedArticle.bind(this);
+      // this.authHandler = this.authHandler.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.addArticle = this.addArticle.bind(this);
+      // this.updateArticle = this.updateArticle.bind(this);
+      this.removeArticle = this.removeArticle.bind(this);
+      this.showSavedArticle = this.showSavedArticle.bind(this);
     }
 
+    savedArticle(e) {
+      const articleObj = {
+            image : this.state.articles[e.target.id].urlToImage,
+            url: this.state.articles[e.target.id].url,
+            title: this.state.articles[e.target.id].title,
+            source: this.state.articles[e.target.id].source.name,
+            description: this.state.articles[e.target.id].description,
+            uid: this.props.userObj.uid
+      }
+      console.log("Clicked savedArticle e", articleObj);
+      this.addArticle(articleObj);
+    }
+
+    addArticle(articleObj){
+      const savedNews = {...this.state.savedNews};
+      const timestamp = Date.now();
+      savedNews[`articleObj-${timestamp}`] = articleObj;
+      this.setState({ savedNews });
+    }
+
+    updateArticle = (key, updatedArticle) => {
+      const articles = {...this.state.articles};
+      articles[key] = updatedArticle;
+      this.setState({ articles });
+      // this.componentWillMount();
+    }
+
+    removeArticle = (key) => {
+      const savedNews = {...this.state.savedNews};
+      savedNews[key] = null;
+      this.setState({ savedNews });
+      // this.componentWillUnmount();
+    }
+
+    componentWillMount() {
+      this.ref = rebase.syncState(`users/${this.props.userObj.uid}/news`, {
+        context: this,
+        state: 'savedNews',
+        asArray: true,
+      });
+    }
+
+    componentWillUnmount() {
+      rebase.removeBinding(this.ref);
+    }
+    
     componentDidMount() {
-        console.log("news componentDidMount");
-        this.getNews();
-    }
+      console.log("news componentDidMount");
+      if (this.props.userObj.uid){
+          this.authHandler(this.props.userObj.uid);
+          // this.saveArticles(this.props.userObj.uid);
+       }
+      this.getNews();
+  }
 
-    getSavedArticles(e){
-      console.log("what is getSaveArticles")
-      let savedArticle = this.state.articles[e.target.id];
-      var userRef = firebase.database().ref(`/news/${this.props.uid}`);
-        user.Ref.push({ image : savedArticle.urlToImage,
-                        url: savedArticle.url,
-                        title: savedArticle.title,
-                        source: savedArticle.source.name,
-                        description: savedArticle.description,
-                        uid: this.props.uid });
-
-      this.setState ({
-        error: null,
-        newsLoaded: false,
-        articles: []
-        },
-        this.getNews());
-    }
-
-
-    getNews() {
-        console.log("getNews");
-      fetch(`https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-              console.log("news result:", result);
-              // const artArr = result;
-            this.setState({
-                newsLoaded: true,
-                articles: result.articles
-            });
-          },
-          // handle errors here
-          (error) => {
-            this.setState({
-                newsLoaded: true,
-                error: error
-            });
-          }
-        )
-    }
   
+  handleChange(e, key) {
+    const article = this.state.articles[key];
+    const updatedArticle = {
+      ...article,
+      [e.target.name]: e.target.value
+    }
+    this.updateArticle(key, updatedArticle);
+  };
+
+  // authHandler(err, userData){
+  //   if(err){
+  //     return;
+  //   }
+  //   const userRef = rebase.initializedApp.database().ref(userData);
+  //   console.log("News articles: authHandler:userRef", userRef);
+
+  //   userRef.once('value', (snapshot) => {
+  //     const data = snapshot.val() || {};
+  //     this.setState({
+  //       uid: userData,
+  //     })
+  //   })
+  // }
+
+  getNews() {
+    console.log("getNews");
+  fetch(`https://newsapi.org/v2/top-headlines?country=us&limit=10&apiKey=511e64b5fdc44764af3517769a250375`)
+    .then(res => res.json())
+    .then(
+      (result) => {
+          console.log("news result:", result);
+          // const artArr = result;
+        this.setState({
+            newsLoaded: true,
+            articles: result.articles,
+            // users: this.props.userObj.uid
+        });
+      },
+      // handle errors here
+      (error) => {
+        this.setState({
+            newsLoaded: true,
+            error
+        });
+      })
+      // this.syncSavedNews();
+}
+
+    showSavedArticle(key){
+      console.log("what is the showSaveArticle key?", key);
+      const story = this.state.savedNews[key];
+      return (
+          <div key = {key} className="News-saved-Article">
+            <div className="collapse " id="collapseExample">
+              <div className="card card-body">
+                <div onChange={(e) => this.handleChange(e, key)}>{story.image}</div>
+                <div onChange={(e) => this.handleChange(e, key)}>{story.url}</div>
+                <div onChange={(e) => this.handleChange(e, key)}>{story.title}</div>
+                <div onChange={(e) => this.handleChange(e, key)}>{story.source}</div>
+                <div onChange={(e) => this.handleChange(e, key)}>{story.description}</div>
+                <button onClick={() => this.removeArticle(key)}>Remove Article</button>
+              </div>
+            </div>
+        </div>
+      )
+    }
+
     render() {
       const { error, newsLoaded, articles } = this.state;
       
       if (error) {
         return <div><p>Error: {error.message}</p></div>;
+      } else if (!newsLoaded) {
+      return <div>Loading News...</div>;
+      } else {  
 
-        } else if (!newsLoaded) {
-        return <div>Loading News...</div>;
+          // const NewsList = articles.map((article, i) => {
+            
+          //   <div key={i} className="News-item" >
+          //       {/* <div className="News-body">  */}
+          //         <img src={article.image}  className="News-photo" alt=""/> 
+          //         <h5 className="News-hed"> <a href={article.url} target="_blank">{article.title} </a></h5> 
+          //         <p className="News-description"><span className="News-source">{article.source}</span>  &mdash; {article.description} </p>  
+          //         <button type="button" id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info news-saved-btn"> Save Article </button> 
+          //       {/* </div> */}
+          //   </div> 
+          //   })
 
-        } else {
+          //   NewsList.splice(10)
           
-          let NewsList = articles.map((article, i) =>
-          <div key={i} className="News-item">
-            <NewsItem
-              image = {article.urlToImage}
-              url = {article.url}
-              title = {article.title}
-              source = {article.source.name}
-              description = {article.description} />
-          </div>
-          );
-
-          NewsList.splice(10);
-        return (
-        
+          return (
             <div className="News-feed">
-              { NewsList }
+            
+              {articles.map((article, i) => (
+                articles.splice(10)
+                key={i}
+                <div className="News-item">
+                    <img src={article.image}  className="News-photo" alt=""/> 
+
+                    <h5 className="News-hed"> <a href={article.url} target="_blank">{article.title} </a></h5> 
+
+                    <p className="News-description"><span className="News-source">{article.source}</span>  &mdash; {article.description} </p>  
+
+                    <button type="button" id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info news-saved-btn"> Save Article </button> 
+                </div> 
+              ))}
+
+              <div className="News-my-articles">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                My Save Articles
+                </button>
+                {Object.keys(this.state.savedNews).map(this.showSavedArticle)}
               </div>
-        )
-      }
-    }
+
+            </div>
+          )
+         }
+       }
+    
 }
 
 export default News; 
+

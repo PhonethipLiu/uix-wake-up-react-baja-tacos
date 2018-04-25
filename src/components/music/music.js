@@ -114,7 +114,7 @@ class Song extends React.Component {
 
   send() {
     // this runs right before the <App> is rendered
-    this.ref = rebase.syncState(`users/${this.props.userObj.uid}/info/songs`, {
+    this.ref = rebase.syncState(`users/${this.props.userObj.uid}/ songs`, {
        context: this,
        state: 'playlist'
      });
