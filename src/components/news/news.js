@@ -24,7 +24,6 @@ class News extends React.Component {
         newsLoaded: false,
         articles: [],
         savedNews: {},
-        
       }
     
       this.savedArticle = this.savedArticle.bind(this);
@@ -57,6 +56,7 @@ class News extends React.Component {
       savedNews[`articleObj-${timestamp}`] = articleObj;
       this.setState({ savedNews });
       this.send();
+      
     }
 
     updateArticle = (key, updatedArticle) => {
@@ -72,7 +72,7 @@ class News extends React.Component {
       this.setState({ savedNews });
       this.componentWillUnmount();
     }
-//componentWillMount
+// formerly componentWillMount  
     send() {
       this.ref = rebase.syncState(`users/${this.props.userObj.uid}/news`, {
         context: this,
