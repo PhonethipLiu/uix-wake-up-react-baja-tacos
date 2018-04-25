@@ -48,3 +48,23 @@ div.row.mainBody {
   width: auto;
   margin:0px;
 } 
+
+.login-button {
+  background-color: rgb(247, 191, 8);
+  border-radius:  5%;
+  font-weight: 400;
+}
+
+.btn.btn-light {
+
+  background-color: rgb(247, 191, 8);
+  border-radius:  5%;
+  font-weight: 400; 
+}
+
+button.logout-button {
+  
+  background-color: rgb(247, 191, 8);
+  border-radius:  5%;
+  font-weight: 400;
+}
