@@ -5,24 +5,15 @@ import {rebase} from '../../config/constants';
 import { saveArticles } from '../../config/userAuth';
 
 
-// let NewsItem = (props) => {
-//   return (
-//       <div className="News-body"> 
-//         <img src={props.image}  className="News-photo" alt=""/> 
-//         <h5 className="News-hed"> <a href={props.url} target="_blank">{props.title} </a></h5> 
-//         <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p>  
-//       </div>
-//   )
-// }
-
-
- // <NewsItem
-              //   image = {article.urlToImage}
-              //   url = {article.url}
-              //   title = {article.title}
-              //   source = {article.source.name}
-              //   description = {article.description}
-              //   />
+let NewsItem = (props) => {
+  return (
+      <div className="News-body"> 
+        <img src={props.image}  className="News-photo" alt=""/> 
+        <h5 className="News-hed"> <a href={props.url} target="_blank">{props.title} </a></h5> 
+        <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p>  
+      </div>
+  )
+}
 
 class News extends React.Component {
     constructor(props) {
@@ -33,14 +24,14 @@ class News extends React.Component {
         newsLoaded: false,
         articles: [],
         savedNews: [],
-        user: ''
+        
       }
     
       this.savedArticle = this.savedArticle.bind(this);
       // this.authHandler = this.authHandler.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.addArticle = this.addArticle.bind(this);
-      // this.updateArticle = this.updateArticle.bind(this);
+      this.updateArticle = this.updateArticle.bind(this);
       this.removeArticle = this.removeArticle.bind(this);
       this.showSavedArticle = this.showSavedArticle.bind(this);
     }
@@ -107,7 +98,7 @@ class News extends React.Component {
       ...article,
       [e.target.name]: e.target.value
     }
-    this.updateArticle(key, updatedArticle);
+    this.savedArticle(e);
   };
 
   // authHandler(err, userData){
@@ -176,51 +167,42 @@ class News extends React.Component {
       } else if (!newsLoaded) {
       return <div>Loading News...</div>;
       } else {  
+        console.log("what is articles state in news line 170?", articles);
+        var NewsList = Object.keys(articles).map((article, i) => (
+         
+            <div key={i} className="News-item" >
+              <NewsItem
+                image = {articles[article].urlToImage}
+                url = {articles[article].url}
+                title = {articles[article].title}
+                source = {articles[article].source.name}
+                description = {articles[article].description} 
+              />
+               <button id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info"> Save Article </button>
+            </div>
+       ));
+      console.log("what is NewsList? on line 184 of news.js?", NewsList);
 
-          // const NewsList = articles.map((article, i) => {
-            
-          //   <div key={i} className="News-item" >
-          //       {/* <div className="News-body">  */}
-          //         <img src={article.image}  className="News-photo" alt=""/> 
-          //         <h5 className="News-hed"> <a href={article.url} target="_blank">{article.title} </a></h5> 
-          //         <p className="News-description"><span className="News-source">{article.source}</span>  &mdash; {article.description} </p>  
-          //         <button type="button" id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info news-saved-btn"> Save Article </button> 
-          //       {/* </div> */}
-          //   </div> 
-          //   })
-
-          //   NewsList.splice(10)
+          NewsList.splice(10);
+        
           
-          return (
+        return (
             <div className="News-feed">
+            {NewsList}
             
-              {articles.map((article, i) => (
-                articles.splice(10)
-                key={i}
-                <div className="News-item">
-                    <img src={article.image}  className="News-photo" alt=""/> 
-
-                    <h5 className="News-hed"> <a href={article.url} target="_blank">{article.title} </a></h5> 
-
-                    <p className="News-description"><span className="News-source">{article.source}</span>  &mdash; {article.description} </p>  
-
-                    <button type="button" id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info news-saved-btn"> Save Article </button> 
-                </div> 
-              ))}
-
+           
               <div className="News-my-articles">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 My Save Articles
                 </button>
                 {Object.keys(this.state.savedNews).map(this.showSavedArticle)}
               </div>
-
             </div>
-          )
+            )
          }
-       }
+      }
+  }
     
-}
 
 export default News; 
 
