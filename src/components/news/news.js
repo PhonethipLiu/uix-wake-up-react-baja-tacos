@@ -81,6 +81,10 @@ class News extends React.Component {
       });
     }
 
+// Testing lifecycle
+
+
+
     componentWillUnmount() {
       rebase.removeBinding(this.ref);
     }
@@ -144,15 +148,20 @@ class News extends React.Component {
       console.log("what is the showSaveArticle key?", key);
       const story = this.state.savedNews[key];
       return (
-          <div key = {key} className="News-saved-Article">
+          <div key = {key} className="card News-saved-Article">
             <div className="collapse " id="collapseExample">
-              <div className="card card-body">
-                <div onChange={(e) => this.handleChange(e, key)}>{story.image}</div>
+              <div className="card-body" onChange={(e) => this.handleChange(e, key)}>
+                <img src={story.image}  className="News-photo" alt=""/> 
+                <h5 className="News-hed"> <a href={story.url} target="_blank">{story.title} </a></h5> 
+                <p className="News-description"><span className="News-source">{story.source}</span>  &mdash; {story.description} </p>  
+                <button onClick={() => this.removeArticle(key)}>Remove Article</button>
+
+                {/* <div onChange={(e) => this.handleChange(e, key)}>{story.image}</div>
                 <div onChange={(e) => this.handleChange(e, key)}>{story.url}</div>
                 <div onChange={(e) => this.handleChange(e, key)}>{story.title}</div>
                 <div onChange={(e) => this.handleChange(e, key)}>{story.source}</div>
                 <div onChange={(e) => this.handleChange(e, key)}>{story.description}</div>
-                <button onClick={() => this.removeArticle(key)}>Remove Article</button>
+                 */}
               </div>
             </div>
         </div>
