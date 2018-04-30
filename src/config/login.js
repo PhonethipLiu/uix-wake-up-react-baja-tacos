@@ -39,7 +39,7 @@ class Login extends Component {
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
-        <button onClick={this.handleSubmit}>Login With Google</button>
+        <button className="login-button" onClick={this.handleSubmit}>Login With Google</button>
       </div>
     )
   }

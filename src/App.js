@@ -88,7 +88,7 @@ class App extends Component {
               </div>
              
               <div className="songDiv">
-                <h2 className="Div-label order-10"> Search Music</h2>
+                <h2 className="Div-label order-10">Your Playlist</h2>
                 <Song userObj={this.state.userObj}/>
               </div>
             </div>
@@ -100,7 +100,6 @@ class App extends Component {
 
             <div className="col-sm col-md-3 col-lg-3 justify-content-end calendarDiv">
               <div className="Login-container order-1 ">
-                <Register />
                 <Login />
                 <LogOut />
               </div>

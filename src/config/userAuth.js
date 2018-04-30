@@ -1,5 +1,5 @@
 import { googleProvider, rebase }  from './constants'
-import calendarEventsRequest from '../components/calender/calendarLogic'
+import calendarEventsRequest from '../components/calender/gcalSetup'
 import firebase from 'firebase';
 /*
   This module encompasses all of the user authorization functionality in the application.  It handles login through google Authentication.
@@ -24,8 +24,9 @@ export function login (email, pw) {
 export function loginWithGoogle () {
   return rebase.initializedApp.auth().signInWithPopup(googleProvider)
   .then((data) => {
-    console.log("WHAT IS DATA?", data.additionalUserInfo.profile.email);
     var calendarId = data.additionalUserInfo.profile.email;
+    calendarEventsRequest(calendarId);
+
     saveUser(data.user);
   })
 }
@@ -71,7 +72,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var uid = user.uid;
     var providerData = user.providerData;
     // ...
-    calendarEventsRequest();
+    
   } else {
     // User is signed out.
    console.log("no user logged in..."); // ...
