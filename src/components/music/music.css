@@ -1,12 +1,15 @@
 .Music-input {
     padding: .25em;
-    width: 20.75%;
+    width: 80%;
+    margin-top: 2em;
 }
 
 .Music-btn {
-    padding: .25em;
+    padding: .7em;
+    width: 20%;
     background-color: #ffffff;
     text-decoration: none;
+    font-size: .75em;
 }
 
 .Music-body {
@@ -16,21 +19,22 @@
 .Music-songInfo {
     display: flex;
     flex-direction: row;
-    margin: .125em 0;
-    border: #e7e7e7 solid 1px;
-    width: 25%;
+    margin-top: .5em;
 }
 
 .Music-title {
     font-size: 12px;
     font-weight: 500;
     width: 200px;
-    margin: 0 2em;
-    margin-top: .125em;
+    margin-left: 1em;
+    margin-top: .5em;
 }
 
 .Music-addSongImage {
-    margin-top: .7em;
     width: 20px;
     height: 20px;
+}
+
+.Music-songBtn {
+    font-size: .75em;
 }

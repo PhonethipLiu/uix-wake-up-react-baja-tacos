@@ -21,11 +21,11 @@ import $ from 'jquery';
 //-------------------------------------------------------------------------------------
 
 //THIS FUNCTION WILL BE CHANGED TO LOAD AFTER AUTH IS APPROVED-------------------------
-$(function() {
-  $('#calendar').fullCalendar({
-        defaultView: 'listWeek'
-  })
-});
+// $(function() {
+//   $('#calendar').fullCalendar({
+//         defaultView: 'listWeek'
+//   })
+// });
 //-------------------------------------------------------------------------------------
 ReactDOM.render(<Application />, document.getElementById('root'));
 
