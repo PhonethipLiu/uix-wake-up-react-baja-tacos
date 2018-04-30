@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './news.css';
+import './News.css';
 import {googleProvider,rebase} from '../../config/constants';
 import { saveArticles } from '../../config/userAuth';
 
