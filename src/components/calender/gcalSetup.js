@@ -7,6 +7,7 @@ console.log("gcalSetup.js is here");
 var CLIENT_ID = '198096718873-iga1erpc5aedb3ufirea60b9ofugtetq.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyAZEJBFv7xYIDASPN89blBnoudCVJJu7jU';
 
+
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 

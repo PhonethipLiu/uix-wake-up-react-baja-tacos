@@ -8,7 +8,7 @@ import { saveArticles } from '../../config/userAuth';
 let NewsItem = (props) => {
   return (
       <div className="News-body"> 
-        <img src={props.image}  className="News-photo" alt=""/> 
+        <img src={props.image} className="News-photo" alt=""/> 
         <h5 className="News-hed"> <a href={props.url} target="_blank">{props.title} </a></h5> 
         <p className="News-description"><span className="News-source">{props.source}</span>  &mdash; {props.description} </p>  
       </div>
@@ -56,23 +56,9 @@ class News extends React.Component {
       savedNews[`articleObj-${timestamp}`] = articleObj;
       this.setState({ savedNews });
       this.send();
-      
     }
-
-    updateArticle = (key, updatedArticle) => {
-      const articles = {...this.state.articles};
-      articles[key] = updatedArticle;
-      this.setState({ articles });
-      // this.componentWillMount();
-    }
-
-    removeArticle = (key) => {
-      const savedNews = {...this.state.savedNews};
-      savedNews[key] = null;
-      this.setState({ savedNews });
-      this.componentWillUnmount();
-    }
-// formerly componentWillMount  
+    
+    // formerly componentWillMount  
     send() {
       this.ref = rebase.syncState(`users/${this.props.userObj.uid}/news`, {
         context: this,
@@ -81,10 +67,14 @@ class News extends React.Component {
       });
     }
 
+    removeArticle = (key) => {
+      const savedNews = {...this.state.savedNews};
+      savedNews[key] = null;
+      this.setState({ savedNews });
+      this.componentWillUnmount();
+    }
+
 // Testing lifecycle
-
-
-
     componentWillUnmount() {
       rebase.removeBinding(this.ref);
     }
@@ -98,7 +88,6 @@ class News extends React.Component {
       this.getNews();
   }
 
-  
   handleChange(e, key) {
     const article = this.state.articles[key];
     const updatedArticle = {
@@ -147,24 +136,33 @@ class News extends React.Component {
     showSavedArticle(key){
       console.log("what is the showSaveArticle key?", key);
       const story = this.state.savedNews[key];
+      // Object.keys(this.state.savedNews).map(this.showSavedArticle);
+      // const story = Object.keys(this.state.savedNews[key]).map(this.showSavedArticle) => (
+        
+      //   <div key={key} className="card News-saved-Article" >
+      //         <SavedItem
+      //           image = {articles[article].urlToImage}
+      //           url = {articles[article].url}
+      //           title = {articles[article].title}
+      //           source = {articles[article].source.name}
+      //           description = {articles[article].description} 
+      //         />
+      //          <button id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info"> Save Article </button>
+               
+      //   </div>
+      // )
+
+      /* Getting an error once the saved article is deleted and the state is changed... need to add a ? terinary operator to figure out if there is a image then show if not ignore it */
+
       return (
           <div key = {key} className="card News-saved-Article">
-            <div className="collapse " id="collapseExample">
               <div className="card-body" onChange={(e) => this.handleChange(e, key)}>
                 <img src={story.image}  className="News-photo" alt=""/> 
                 <h5 className="News-hed"> <a href={story.url} target="_blank">{story.title} </a></h5> 
                 <p className="News-description"><span className="News-source">{story.source}</span>  &mdash; {story.description} </p>  
                 <button onClick={() => this.removeArticle(key)}>Remove Article</button>
-
-                {/* <div onChange={(e) => this.handleChange(e, key)}>{story.image}</div>
-                <div onChange={(e) => this.handleChange(e, key)}>{story.url}</div>
-                <div onChange={(e) => this.handleChange(e, key)}>{story.title}</div>
-                <div onChange={(e) => this.handleChange(e, key)}>{story.source}</div>
-                <div onChange={(e) => this.handleChange(e, key)}>{story.description}</div>
-                 */}
               </div>
-            </div>
-        </div>
+          </div>
       )
     }
 
@@ -188,6 +186,7 @@ class News extends React.Component {
                 description = {articles[article].description} 
               />
                <button id ={i} onClick={this.handleChange.bind(this)} className="btn btn-info"> Save Article </button>
+               
             </div>
        ));
       console.log("what is NewsList? on line 184 of news.js?", NewsList);
@@ -199,12 +198,14 @@ class News extends React.Component {
             <div className="News-feed">
             {NewsList}
             
-           
               <div className="News-my-articles">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              
+                <button className ="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 My Save Articles
                 </button>
+                <div className="collapse " id="collapseExample">
                 {Object.keys(this.state.savedNews).map(this.showSavedArticle)}
+                </div>
               </div>
             </div>
             )
